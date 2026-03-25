@@ -1,5 +1,5 @@
-//import { useState } from "react"
-
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../config/firebase'
 import { useState } from "react"
 
 export function LoginSignup ({isLogin,setIsLogin}) {
@@ -11,11 +11,11 @@ export function LoginSignup ({isLogin,setIsLogin}) {
     const [signUpPasswordConfirm, setSignUpPasswordConfirm] = useState('')
     const [isIncorrect, setIsIncorrect] = useState(false)
 
-    const signupsubmit = (e) => {
+    const signupsubmit = async (e) => {
         e.preventDefault()
-        if (signUpPassword === signUpPasswordConfirm) {
+        if (signUpPassword.trim().length >= 6 && signUpPassword === signUpPasswordConfirm) {
+            await createUserWithEmailAndPassword(auth,signUpEmail,signUpPassword)
             setIsIncorrect("Signup Successfully")
-            setIsIncorrect(true)
         }
         else {
             setIsIncorrect("Password doesn't match, check and try again!")
