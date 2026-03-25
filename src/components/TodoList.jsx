@@ -33,7 +33,7 @@ export function TodoList() {
                         </thead>
                         <tbody className="divide-y divide-blue-900 dark:divide-white dark:text-white">
                             {todo.map((td)=>(
-                                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition" key={td.sn}>
+                                <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.sn}>
                                     <td className="px-6 py-4">{td.sn}</td>
                                     <td className="px-6 py-4">{td.td}</td>
                                     <td className="px-6 py-4">{td.status}</td>
