@@ -1,5 +1,6 @@
 import { Header } from './components/Header'
 import { LoginSignup } from './components/LoginSignup'
+import { TodoList } from './components/TodoList'
 import { useEffect, useState } from 'react'
 import './App.css'
 
@@ -22,10 +23,13 @@ function App() {
         isDark={isDark}
         setIsDark={setIsDark}
       />
-      <LoginSignup 
-        isLogin={isLogin} 
-        setIsLogin={setIsLogin}
-      />
+      <div className='py-20'>
+        <LoginSignup 
+          isLogin={isLogin} 
+          setIsLogin={setIsLogin}
+        />
+        <TodoList />
+      </div>
     </div>
   )
 }
