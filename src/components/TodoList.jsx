@@ -22,7 +22,7 @@ export function TodoList() {
                 <div
                     className="w-full overflow-x-auto rounded shadow"
                 >
-                    <table className="min-w-full bg-blue-300 dark:bg-gray-500">
+                    <table className="min-w-full bg-blue-200 dark:bg-gray-500">
                         <thead className="bg-blue-900 dark:bg-black text-white">
                             <tr>
                                 <th className={`${th} w-[5%]`}>S/N</th>
@@ -31,13 +31,13 @@ export function TodoList() {
                                 <th className={`${th} w-[10%]`}>ACTION</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-blue-900 dark:divide-white dark:text-white">
+                        <tbody className="divide-y divide-blue-900 dark:divide-white text-blue-900 dark:text-white">
                             {todo.map((td)=>(
                                 <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.sn}>
                                     <td className="px-6 py-4">{td.sn}</td>
                                     <td className="px-6 py-4">{td.td}</td>
                                     <td className="px-6 py-4">{td.status}</td>
-                                    <td className="flex justify-between px-6 py-4">
+                                    <td className="flex justify-between px-6 py-4 gap-2">
                                         <button className="px-2 py-0 bg-green-500 rounded">G</button>
                                         <button className="px-2 py-0 bg-red-500 rounded">D</button>
                                     </td>
