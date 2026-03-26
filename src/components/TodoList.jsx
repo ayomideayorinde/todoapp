@@ -1,18 +1,23 @@
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "../config/firebase";
+import { collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
+import { auth, db } from "../config/firebase";
 import { useEffect } from "react";
 import { useState } from "react";
+import { AddTodo } from './AddTodo'
 
 
 
 export function TodoList({currentUser,isLogin}) {
     const [ todos, setTodos ] = useState([])
+    const [ addTodo, setAddTodo ] = useState(false)
 
-    // console.log(todos.title)
+    
     useEffect(()=>{
-        const unsubscribe = onSnapshot(collection(db, 'todos'),(snapshot)=>{
+        const user = auth.currentUser
+
+        if (!user) return;
+        const unsubscribe = onSnapshot(query(collection(db, 'todos'),where('uId','==',user.uid)),(snapshot)=>{
             const data = snapshot.docs.map((doc)=>({
-                id: doc.id,
+                docId: doc.id,
                 ...doc.data()
             }))
             setTodos(data)
@@ -24,6 +29,16 @@ export function TodoList({currentUser,isLogin}) {
 
     return (
         <>
+            { addTodo ? 
+                <AddTodo 
+                    isLogin={isLogin} 
+                    addTodo={addTodo} 
+                    setAddTodo={setAddTodo} 
+                    todos={todos}
+                    setTodos={setTodos}
+                /> : 
+                ''
+            }
             <div className="lg:px-60 px-3 overflow-hidden">
                 <p className="text-blue-800 dark:text-black lg:text-3xl text-xl font-semibold flex-wrap mb-5"
                 >
@@ -35,7 +50,12 @@ export function TodoList({currentUser,isLogin}) {
                 <div
                     className="flex justify-end mb-3"
                 >
-                    <button className="bg-blue-900 px-3 py-1 text-white text-4xl rounded">+</button>
+                    <button 
+                        className="bg-blue-900 px-3 py-1 text-white text-4xl rounded"
+                        onClick={()=>setAddTodo(!addTodo)}
+                    >
+                        +
+                    </button>
                 </div>
                 <div
                     className="w-full overflow-x-auto rounded shadow"
@@ -50,14 +70,30 @@ export function TodoList({currentUser,isLogin}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-blue-900 dark:divide-white text-blue-900 dark:text-white">
-                            {todos.map((td,id)=>(
-                                <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.length}>
-                                    <td className="px-6 py-4">{id.length}</td>
-                                    <td className="px-6 py-4">{td.title}</td>
-                                    <td className="px-6 py-4">{td.status}</td>
+                            {todos.map((td)=>(
+                                <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.docId}>
+                                    <td className="px-6 py-4">{td.id}</td>
+                                    <td className="px-6 py-4">{td.title}{td.date}</td>
+                                    <td className="px-6 py-4">{td.status ? 'Completed':'Pending'}</td>
                                     <td className="flex justify-between px-6 py-4 gap-2">
-                                        <button className="px-2 py-0 bg-green-500 rounded">G</button>
-                                        <button className="px-2 py-0 bg-red-500 rounded">D</button>
+                                        <button 
+                                            className="px-2 py-0 bg-green-500 rounded"
+                                            onClick={async ()=>(
+                                                await updateDoc(doc(db,'todos',td.docId),{
+                                                    status: !td.status
+                                                })
+                                            )}
+                                        >
+                                            G
+                                        </button>
+                                        <button 
+                                            className="px-2 py-0 bg-red-500 rounded"
+                                            onClick={async ()=>(
+                                                await deleteDoc(doc(db,'todos',td.docId))
+                                            )}
+                                        >
+                                            D
+                                        </button>
                                     </td>
                                 </tr>
                             ))}

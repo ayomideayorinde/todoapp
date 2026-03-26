@@ -52,12 +52,12 @@ function App() {
         />
         {
         isLogin?
-        <TodoList
-          currentUser={currentUser}
-          isLogin={isLogin}
-        />:
-        ''
-      }
+          <TodoList
+            currentUser={currentUser}
+            isLogin={isLogin}
+          />:
+          ''
+        }
       </div>
     </div>
   )
