@@ -41,7 +41,7 @@ export function TodoList({currentUser,isLogin}) {
                 ''
             }
             <div className="lg:px-60 px-3 overflow-hidden">
-                <p className="text-white lg:text-3xl text-xl font-semibold flex-wrap mb-5"
+                <p className="text-white lg:text-3xl text-xl font-semibold flex-wrap mb-5 bg-blue-900 dark:bg-black p-3 rounded"
                 >
                     {isLogin?'Welcome':''} <br />
                     <span className="text-white">
