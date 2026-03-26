@@ -17,8 +17,8 @@ export function TodoList({currentUser,isLogin}) {
 
     return (
         <>
-            <div className="lg:px-60 px-3">
-                <p className="text-blue-800 dark:text-black text-3xl font-semibold">{isLogin? `Welcome ${currentUser}!`:''}</p>
+            <div className="lg:px-60 px-3 overflow-hidden">
+                <p className="text-blue-800 dark:text-black lg:text-3xl text-xl font-semibold">{isLogin? `Welcome ${currentUser}!`:''}</p>
                 <div
                     className="flex justify-end mb-3"
                 >
