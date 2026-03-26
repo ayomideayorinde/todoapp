@@ -94,7 +94,7 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
     const login = ()=>{
         return (
             <div 
-                className="bg-blue-900 border border-white dark:bg-black p-5 mb-12 mx-3  lg:m-16 rounded-lg shadow-xl"  
+                className="bg-blue-900 border border-white dark:bg-black p-5 mb-12 mx-3 my-12  lg:m-16 rounded-lg shadow-xl w-full"  
             >
                 <form 
                     action=""
@@ -199,7 +199,7 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
     }
 
     return (
-        <div className="flex lg:items-center justify-center">
+        <div className="flex justify-center items-center w-full">
             { isLogin ? '': isLoginForm? login() : signup() }
         </div>
     )
