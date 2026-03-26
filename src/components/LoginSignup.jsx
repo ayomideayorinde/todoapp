@@ -14,16 +14,19 @@ export function LoginSignup ({isLogin,setIsLogin}) {
     const signupsubmit = async (e) => {
         e.preventDefault()
         if (signUpPassword.trim().length >= 6 && signUpPassword === signUpPasswordConfirm) {
-            await createUserWithEmailAndPassword(auth,signUpEmail,signUpPassword)
-            setIsIncorrect("Signup Successfully")
+            try {
+                await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+                setIsIncorrect("Signup Successfully")
+            } catch (error) {
+                console.log(error) // 🔥 VERY IMPORTANT
+                setIsIncorrect(error.message)
+            }
         }
         else {
             setIsIncorrect("Password doesn't match, check and try again!")
-            setInterval(
-                ()=>{
-                    setIsIncorrect("")
-                },5000
-            )
+            setTimeout(() => {
+                setIsIncorrect("")
+            }, 3000)
         }
     }
 
