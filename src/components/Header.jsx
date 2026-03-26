@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth'
 import { auth } from '../config/firebase'
 
-export function Header ({isLogin,setIsLogin,isDark,setIsDark}) {
+export function Header ({isLogin,isLoginForm,setIsLoginForm,isDark,setIsDark}) {
 
     return (
         <div
@@ -24,10 +24,10 @@ export function Header ({isLogin,setIsLogin,isDark,setIsDark}) {
                     onClick={
                         isLogin ? async () => {
                             await signOut(auth)
-                        }: ()=>{setIsLogin(!isLogin)}
+                        }: ()=>{setIsLoginForm(!isLoginForm)}
                     }
                 >
-                    {isLogin ? 'SignOut':'Login'}
+                    {isLogin ? 'SignOut':isLoginForm? 'Sign Up' :'Sign In'}
                 </button>
             </div>
         </div>
