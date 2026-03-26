@@ -143,7 +143,7 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
         return (
             <div className="bg-blue-900 border border-white dark:bg-black p-5 mb-12 mx-3 my-12  lg:m-16 rounded-lg shadow-xl w-full">
             <div 
-                className="p-5 rounded-lg"
+                
             >
                 <form 
                     action=""
