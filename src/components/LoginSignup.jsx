@@ -17,6 +17,9 @@ export function LoginSignup ({isLogin,setIsLogin}) {
             try {
                 await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
                 setIsIncorrect("Signup Successfully")
+                setTimeout(() => {
+                    setIsIncorrect("")
+                }, 3000)
             } catch (error) {
                 console.log(error) // 🔥 VERY IMPORTANT
                 setIsIncorrect(error.message)
