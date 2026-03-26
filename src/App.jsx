@@ -50,10 +50,14 @@ function App() {
           setIsLoginForm={setIsLoginForm}
           currentUser={currentUser}
         />
+        {
+        isLogin?
         <TodoList
           currentUser={currentUser}
           isLogin={isLogin}
-        />
+        />:
+        ''
+      }
       </div>
     </div>
   )
