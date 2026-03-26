@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+import { auth } from '../config/firebase'
 
 export function Header ({isLogin,setIsLogin,isDark,setIsDark}) {
 
@@ -21,10 +22,12 @@ export function Header ({isLogin,setIsLogin,isDark,setIsDark}) {
                 <button
                     className="px-10 bg-blue-900 text-white py-2 rounded"
                     onClick={
-                        ()=>{setIsLogin(!isLogin)}
+                        isLogin ? async () => {
+                            await signOut(auth)
+                        }: ()=>{setIsLogin(!isLogin)}
                     }
                 >
-                    {isLogin ? 'SignUp':'Login'}
+                    {isLogin ? 'SignOut':'Login'}
                 </button>
             </div>
         </div>

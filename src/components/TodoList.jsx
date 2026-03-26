@@ -1,4 +1,8 @@
 
+
+const tod = async (params) => {
+    
+}
 const todo = [
     {sn: 1, td: 'Go to market', status: 'Completed'},
     {sn: 2, td: 'Go to work', status: 'Pending'},
@@ -7,13 +11,14 @@ const todo = [
     {sn: 5, td: 'Go to park', status: 'Completed'}
 ]
 
-export function TodoList() {
+export function TodoList({currentUser,isLogin}) {
 
     const th = "px-6 py-3 text-left text-xs font-bold uppercase";
 
     return (
         <>
             <div className="lg:px-60 px-3">
+                <p>{isLogin? `Welcome ${currentUser}`:''}</p>
                 <div
                     className="flex justify-end mb-3"
                 >
