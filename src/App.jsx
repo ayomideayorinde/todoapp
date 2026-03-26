@@ -33,6 +33,7 @@ function App() {
   return (
     <div
       className='min-h-screen dark:bg-black bg-blue-900 transition-all duration-700'
+      style={{backgroundImage: `url(${isDark?'./image/bg-img-dark.jpg':'./image/bg-img.jpg'})`, height: '100vh', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}
     >
       <Header 
         isLogin={isLogin} 
