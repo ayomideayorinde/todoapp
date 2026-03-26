@@ -4,13 +4,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 
-// const tod = [
-//     {sn: 1, td: 'Go to market', status: 'Completed'},
-//     {sn: 2, td: 'Go to work', status: 'Pending'},
-//     {sn: 3, td: 'Go to bank', status: 'Completed'},
-//     {sn: 4, td: 'Go to shop', status: 'Pending'},
-//     {sn: 5, td: 'Go to park', status: 'Completed'}
-// ]
 
 export function TodoList({currentUser,isLogin}) {
     const [ todos, setTodos ] = useState([])
@@ -57,9 +50,9 @@ export function TodoList({currentUser,isLogin}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-blue-900 dark:divide-white text-blue-900 dark:text-white">
-                            {todos.map((td)=>(
-                                <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.id}>
-                                    <td className="px-6 py-4">{td.id}</td>
+                            {todos.map((td,id)=>(
+                                <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.length}>
+                                    <td className="px-6 py-4">{id.length}</td>
                                     <td className="px-6 py-4">{td.title}</td>
                                     <td className="px-6 py-4">{td.status}</td>
                                     <td className="flex justify-between px-6 py-4 gap-2">
