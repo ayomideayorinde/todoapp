@@ -6,7 +6,7 @@ export function Header ({isLogin,isLoginForm,setIsLoginForm,isDark,setIsDark}) {
 
     return (
         <div
-            className="bg-blue-900 dark:bg-black transition-all duration-700 flex justify-between items-center p-3 z-50 fixed w-full shadow-md"
+            className="bg-blue-900 dark:bg-black transition-all duration-700 flex justify-between items-center p-3 z-50 fixed w-full shadow-md border-b"
         >
             <div>
                 <a className="text-xl font-semibold text-white" href='/'>
