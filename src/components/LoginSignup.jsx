@@ -130,7 +130,7 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
                         >Sign In With Google</button>
                     </div>
                     <div>
-                        <p>Don't have an account? <span className="cursor-pointer font-semibold text-blue-900 dark:text-white" onClick={
+                        <p>Don't have an account? <span className="cursor-pointer font-semibold text-white" onClick={
                             ()=>setIsLoginForm(!isLoginForm)
                         }>Sign Up</span></p>
                     </div>
@@ -141,13 +141,13 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
 
     const signup = ()=>{
         return (
-            <div className="lg:m-16 mx-3 my-12">
+            <div className="bg-blue-900 border border-white dark:bg-black p-5 mb-12 mx-3 my-12  lg:m-16 rounded-lg shadow-xl w-full">
             <div 
                 className="p-5 rounded-lg"
             >
                 <form 
                     action=""
-                    className="flex flex-col gap-4 lg:w-[400px] dark:text-white"
+                    className="flex flex-col gap-4 lg:w-[400px] text-white"
                     onSubmit={signupsubmit}
                 >
                     <div className="flex flex-col">
@@ -180,15 +180,15 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
                         {errorMessage}
                     </div>                
                     <div>
-                        <button className="bg-blue-900 dark:bg-white dark:text-black font-semibold dark:border w-full p-2 rounded text-white">Sign Up</button>
+                        <button className="bg-white dark:text-black font-semibold dark:border w-full p-2 rounded text-blue-900">Sign Up</button>
                     </div>
                     <div>
-                        <button className="bg-blue-900 dark:bg-white dark:text-black font-semibold dark:border w-full p-2 rounded text-white"
+                        <button className="bg-white text-blue-900 dark:text-black font-semibold dark:border w-full p-2 rounded"
                             onClick={signinwithGoogle}
                         >Sign Up With Google</button>
                     </div>
                     <div>
-                        <p>Have an account? <span className="cursor-pointer text-blue-900 dark:text-white font-semibold" onClick={
+                        <p>Have an account? <span className="cursor-pointer text-white font-semibold" onClick={
                             ()=>setIsLoginForm(!isLoginForm)
                         }>Sign In</span></p>
                     </div>
