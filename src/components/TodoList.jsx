@@ -52,7 +52,7 @@ export function TodoList({currentUser,isLogin}) {
                     className="flex justify-end mb-3"
                 >
                     <button 
-                        className="bg-blue-900 px-3 py-1 text-white text-4xl rounded"
+                        className="bg-white px-3 py-1 text-blue-900 dark:text-black text-4xl rounded"
                         onClick={()=>setAddTodo(!addTodo)}
                     >
                         +
@@ -62,7 +62,7 @@ export function TodoList({currentUser,isLogin}) {
                     className="w-full overflow-x-auto rounded shadow"
                 >
                     <table className="min-w-full bg-blue-200 dark:bg-gray-500">
-                        <thead className="bg-blue-900 dark:bg-black text-white">
+                        <thead className="bg-white dark:text-black text-blue-900">
                             <tr>
                                 <th className={`${th} w-[70%]`}>TODO</th>
                                 <th className={`${th} w-[15%]`}>STATUS</th>
