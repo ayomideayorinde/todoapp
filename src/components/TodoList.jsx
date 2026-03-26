@@ -1,27 +1,41 @@
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../config/firebase";
+import { useEffect } from "react";
+import { useState } from "react";
 
 
-const tod = async (params) => {
-    
-}
-const todo = [
-    {sn: 1, td: 'Go to market', status: 'Completed'},
-    {sn: 2, td: 'Go to work', status: 'Pending'},
-    {sn: 3, td: 'Go to bank', status: 'Completed'},
-    {sn: 4, td: 'Go to shop', status: 'Pending'},
-    {sn: 5, td: 'Go to park', status: 'Completed'}
-]
+// const tod = [
+//     {sn: 1, td: 'Go to market', status: 'Completed'},
+//     {sn: 2, td: 'Go to work', status: 'Pending'},
+//     {sn: 3, td: 'Go to bank', status: 'Completed'},
+//     {sn: 4, td: 'Go to shop', status: 'Pending'},
+//     {sn: 5, td: 'Go to park', status: 'Completed'}
+// ]
 
 export function TodoList({currentUser,isLogin}) {
+    const [ todos, setTodos ] = useState([])
+
+    // console.log(todos.title)
+    useEffect(()=>{
+        const unsubscribe = onSnapshot(collection(db, 'todos'),(snapshot)=>{
+            const data = snapshot.docs.map((doc)=>({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setTodos(data)
+        })
+        return ()=>unsubscribe()
+    },[])
 
     const th = "px-6 py-3 text-left text-xs font-bold uppercase";
 
     return (
         <>
             <div className="lg:px-60 px-3 overflow-hidden">
-                <p className="text-blue-800 dark:text-black lg:text-3xl text-xl font-semibold flex-wrap mb-3"
+                <p className="text-blue-800 dark:text-black lg:text-3xl text-xl font-semibold flex-wrap mb-5"
                 >
                     {isLogin?'Welcome':''} <br />
-                    <span className="text-black dark:text-blue-900">
+                    <span className="text-black dark:text-black decoration-0">
                         {isLogin? ` ${currentUser}!`:''}
                     </span>
                 </p>
@@ -43,10 +57,10 @@ export function TodoList({currentUser,isLogin}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-blue-900 dark:divide-white text-blue-900 dark:text-white">
-                            {todo.map((td)=>(
-                                <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.sn}>
-                                    <td className="px-6 py-4">{td.sn}</td>
-                                    <td className="px-6 py-4">{td.td}</td>
+                            {todos.map((td)=>(
+                                <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.id}>
+                                    <td className="px-6 py-4">{td.id}</td>
+                                    <td className="px-6 py-4">{td.title}</td>
                                     <td className="px-6 py-4">{td.status}</td>
                                     <td className="flex justify-between px-6 py-4 gap-2">
                                         <button className="px-2 py-0 bg-green-500 rounded">G</button>
