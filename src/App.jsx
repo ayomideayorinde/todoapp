@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div
-      className='min-h-screen dark:bg-gray-300 bg-white'
+      className='min-h-screen dark:bg-black bg-blue-900 transition-all duration-700'
     >
       <Header 
         isLogin={isLogin} 

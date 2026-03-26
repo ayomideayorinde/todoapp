@@ -94,16 +94,16 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
     const login = ()=>{
         return (
             <div 
-                className="bg-blue-300 dark:bg-black p-5 mb-12 mx-3  lg:m-16 rounded-lg"  
+                className="bg-blue-900 border border-white dark:bg-black p-5 mb-12 mx-3  lg:m-16 rounded-lg shadow-xl"  
             >
                 <form 
                     action=""
-                    className="flex flex-col gap-4 lg:w-[400px] dark:text-white"
+                    className="flex flex-col gap-4 lg:w-[400px] text-white"
                     onSubmit={signinsubmit}
                 >
                     <div className="flex flex-col">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email" className="p-2 focus:outline-none rounded text-black" 
+                        <input type="email" name="email" id="email" className="border border-blue-900 p-2 focus:outline-none rounded text-black" 
                         value={loginEmail}
                         onChange={(e)=>{setLoginEmail(e.target.value)}}
                         required
@@ -111,7 +111,7 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="password" className="p-2 focus:outline-none rounded text-black" 
+                        <input type="password" name="password" id="password" className="border border-blue-900 p-2 focus:outline-none rounded text-black" 
                         value={loginPassword}
                         onChange={(e)=>{setLoginPassword(e.target.value)}}
                         minLength={6}
@@ -122,10 +122,10 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
                         {errorMessage}
                     </div>
                     <div>
-                        <button className="bg-blue-900 dark:border w-full p-2 rounded text-white">Sign in</button>
+                        <button className="bg-white dark:border font-semibold w-full p-2 rounded text-blue-900 dark:text-black">Sign in</button>
                     </div>
                     <div>
-                        <button className="bg-blue-900 dark:border w-full p-2 rounded text-white"
+                        <button className="bg-white dark:border font-semibold w-full p-2 rounded text-blue-900 dark:text-black"
                             onClick={signinwithGoogle}
                         >Sign In With Google</button>
                     </div>
@@ -143,7 +143,7 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
         return (
             <div className="lg:m-16 mx-3 my-12">
             <div 
-                className="bg-blue-300 dark:bg-black p-5 rounded-lg"
+                className="p-5 rounded-lg"
             >
                 <form 
                     action=""
@@ -199,7 +199,7 @@ export function LoginSignup ({isLogin,isLoginForm,setIsLoginForm}) {
     }
 
     return (
-        <div className="flex flex-col lg:items-center justify-center">
+        <div className="flex lg:items-center justify-center">
             { isLogin ? '': isLoginForm? login() : signup() }
         </div>
     )

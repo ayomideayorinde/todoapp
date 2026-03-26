@@ -3,6 +3,7 @@ import { auth, db } from "../config/firebase";
 import { useEffect } from "react";
 import { useState } from "react";
 import { AddTodo } from './AddTodo'
+import { Check, Trash } from "lucide-react";
 
 
 
@@ -25,7 +26,7 @@ export function TodoList({currentUser,isLogin}) {
         return ()=>unsubscribe()
     },[])
 
-    const th = "px-6 py-3 text-left text-xs font-bold uppercase";
+    const th = "px-6 py-3 text-left text-xs lg:text-2xl font-bold uppercase";
 
     return (
         <>
@@ -63,7 +64,6 @@ export function TodoList({currentUser,isLogin}) {
                     <table className="min-w-full bg-blue-200 dark:bg-gray-500">
                         <thead className="bg-blue-900 dark:bg-black text-white">
                             <tr>
-                                <th className={`${th} w-[5%]`}>S/N</th>
                                 <th className={`${th} w-[70%]`}>TODO</th>
                                 <th className={`${th} w-[15%]`}>STATUS</th>
                                 <th className={`${th} w-[10%]`}>ACTION</th>
@@ -72,27 +72,26 @@ export function TodoList({currentUser,isLogin}) {
                         <tbody className="divide-y divide-blue-900 dark:divide-white text-blue-900 dark:text-white">
                             {todos.map((td)=>(
                                 <tr className="hover:bg-blue-900 hover:text-white dark:hover:bg-black transition" key={td.docId}>
-                                    <td className="px-6 py-4">{td.id}</td>
-                                    <td className="px-6 py-4">{td.title}{td.date}</td>
-                                    <td className="px-6 py-4">{td.status ? 'Completed':'Pending'}</td>
+                                    <td className={`lg:text-2xl px-6 py-4 ${td.status? 'line-through':''}`}>{td.title}</td>
+                                    <td className="lg:text-2xl px-6 py-4">{td.status ? 'Completed':'Pending'}</td>
                                     <td className="flex justify-between px-6 py-4 gap-2">
                                         <button 
-                                            className="px-2 py-0 bg-green-500 rounded"
+                                            className="p-2 text-white bg-green-500 rounded"
                                             onClick={async ()=>(
                                                 await updateDoc(doc(db,'todos',td.docId),{
                                                     status: !td.status
                                                 })
                                             )}
                                         >
-                                            G
+                                            <Check />
                                         </button>
                                         <button 
-                                            className="px-2 py-0 bg-red-500 rounded"
+                                            className="p-2 text-white bg-red-500 rounded"
                                             onClick={async ()=>(
                                                 await deleteDoc(doc(db,'todos',td.docId))
                                             )}
                                         >
-                                            D
+                                            <Trash />
                                         </button>
                                     </td>
                                 </tr>
