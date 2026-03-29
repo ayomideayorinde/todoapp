@@ -2,7 +2,7 @@ import { addDoc, collection } from "firebase/firestore"
 import { auth, db } from "../config/firebase"
 import { useState } from "react"
 
-export function AddTodo({setAddTodo,addTodo,isLogin,todos,setTodos}) {
+export function AddTodo({setAddTodo,addTodo,isLogin,todos}) {
 
     const [newTodo,setNewTodo] = useState([])
 
@@ -19,7 +19,6 @@ export function AddTodo({setAddTodo,addTodo,isLogin,todos,setTodos}) {
             }
             try {
                 await addDoc(collection(db,'todos'), newTd)
-                setTodos([...todos, newTd])
                 setNewTodo('')
                 setAddTodo(!addTodo)
             } catch (error) {
