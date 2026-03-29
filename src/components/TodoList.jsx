@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { AddTodo } from './AddTodo'
 import { Check, Trash } from "lucide-react";
+import { onAuthStateChanged } from "firebase/auth";
 
 
 
@@ -13,17 +14,31 @@ export function TodoList({currentUser,isLogin}) {
 
     
     useEffect(()=>{
-        const user = auth.currentUser
+        let unsubscribeSnapshot = null;
+        //const user = auth.currentUser
 
-        if (!user) return;
-        const unsubscribe = onSnapshot(query(collection(db, 'todos'),where('uId','==',user.uid)),(snapshot)=>{
-            const data = snapshot.docs.map((doc)=>({
-                docId: doc.id,
-                ...doc.data()
-            }))
-            setTodos(data)
+        const unsubscribeAuth = onAuthStateChanged(auth, (user)=>{
+            if (user) {
+                unsubscribeSnapshot = onSnapshot(
+                    query(
+                        collection(db, 'todos'),
+                        where('uId','==',user.uid)
+                    ),
+                    (snapshot)=>{
+                        const data = snapshot.docs.map((doc)=>({
+                            docId: doc.id,
+                            ...doc.data()
+                        }))
+                        setTodos(data)
+                    }
+                )
+            }
         })
-        return ()=>unsubscribe()
+        
+        return ()=> {
+            if (unsubscribeSnapshot) unsubscribeSnapshot();
+            unsubscribeAuth();
+        };
     },[])
 
     const th = "px-6 py-3 text-left text-xs lg:text-2xl font-bold uppercase";
