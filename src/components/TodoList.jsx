@@ -3,7 +3,7 @@ import { auth, db } from "../config/firebase";
 import { useEffect } from "react";
 import { useState } from "react";
 import { AddTodo } from './AddTodo'
-import { Check, Pencil, Trash } from "lucide-react";
+import { Check, Pencil, Redo, Trash } from "lucide-react";
 
 
 
@@ -88,7 +88,7 @@ export function TodoList({currentUser,isLogin}) {
                                                 })
                                             )}
                                         >
-                                            {td.status ? <Pencil /> : <Check />}
+                                            {td.status ? <Redo /> : <Check />}
                                         </button>
                                         <button 
                                             className="p-2 text-white bg-red-500 rounded"
